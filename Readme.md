@@ -2,7 +2,17 @@
 
   Rate limiter for Node.js backed by Redis.
 
-[![Build Status](https://travis-ci.org/tj/node-ratelimiter.svg)](https://travis-ci.org/tj/node-ratelimiter)
+  This is a forked version of [tj/node-ratelimiter](https://github.com/tj/node-ratelimiter). Primarily this added support for namespace. So you could use:
+
+  ```js
+  var limit = new Limiter({ id: 'id1', db: db, namespace: 'ns1' });
+  ```
+
+  And the key used in Redis will be `limit:ns1:id1:count`, for example.
+
+  But I just realized after done this, that I can use `var id = ns1:id1` instead. So I just keep this fork just in case I might need something based on this in the future.
+
+[![Build Status](https://travis-ci.org/deoxen0n2/node-ratelimiter.svg)](https://travis-ci.org/deoxen0n2/node-ratelimiter)
 
 ## Release Notes
 [v2.1.2](https://github.com/tj/node-ratelimiter/tree/v2.1.2) - [#17](/../../pull/17) by [@waleedsamy](https://github.com/waleedsamy) - Add Travis CI support
