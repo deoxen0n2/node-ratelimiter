@@ -15,6 +15,7 @@ module.exports = Limiter;
  *
  *  - `id` identifier being limited
  *  - `db` redis connection instance
+ *  - `namespace` namespace for identifier
  *
  * @param {Object} opts
  * @api public
@@ -27,7 +28,7 @@ function Limiter(opts) {
   assert(this.db, '.db required');
   this.max = opts.max || 2500;
   this.duration = opts.duration || 3600000;
-  this.prefix = 'limit:' + this.id + ':';
+  this.prefix = 'limit:' + (opts.namespace ? opts.namespace + ':' : '') + this.id + ':';
 }
 
 /**
